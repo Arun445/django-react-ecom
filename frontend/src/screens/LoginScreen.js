@@ -13,7 +13,7 @@ function LoginScreen({ location, history }) {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  console.log(location.search);
+
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -63,7 +63,7 @@ function LoginScreen({ location, history }) {
       <Row className="pd-3 text-center">
         <Col>
           New Customer?·
-          <Link to={redirect ? `/register?redirect=${redirect}'` : "/register"}>
+          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
             Register
           </Link>
         </Col>
