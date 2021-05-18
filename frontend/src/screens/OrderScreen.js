@@ -54,6 +54,9 @@ function OrderScreen({ match, history }) {
   };
 
   useEffect(() => {
+    if (!userInfo) {
+      history.push("/login");
+    }
     if (
       !order ||
       successPay ||
