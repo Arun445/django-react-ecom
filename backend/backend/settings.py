@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 #------------------THIRD PARTY APPS ----------------
     'corsheaders',
-
+    'storages',
     'rest_framework',
 #------------------MY APPS --------------------
     'base.apps.BaseConfig'
@@ -122,10 +122,23 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'TEST_R',
+        'USER': 'Arun445',
+        'PASSWORD':os.environ.get('RDS_POSTGRESQL_PASS'),
+        'HOST':'database-2.cjiw8hi93vqh.eu-central-1.rds.amazonaws.com',
+        'PORT':'5432'
     }
 }
 
@@ -163,17 +176,29 @@ USE_L10N = True
 USE_TZ = False
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
+
 
 STATIC_URL = '/static/'
+STATIC_ROOT = Path(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/images/'
 
-STATICFILES_DIRS = [BASE_DIR/'static', BASE_DIR / 'frontend/build/static']
+#STATICFILES_DIRS = [BASE_DIR/'static', BASE_DIR / 'frontend/build/static']
 MEDIA_ROOT = 'static/images'
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+#AWS S3 BUCKET CONFIG
+AWS_S3_REGION_NAME = 'eu-west-1'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'reeeeeeeeeeeeeee'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+ADMIN_MEDIA_PREFIX = '/static/admin/'
