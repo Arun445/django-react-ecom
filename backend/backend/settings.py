@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ue3h45hd+v1km&fypu69^tn0ui#rg0-qj1w00uq(or$^m(&1k#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://ecom-test-react.herokuapp.com/','http://127.0.0.1:8000/']
 
 
 # Application definition
@@ -122,7 +122,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-'''
+
 
 DATABASES = {
     'default': {
@@ -141,7 +141,7 @@ DATABASES = {
         'PORT':'5432'
     }
 }
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
